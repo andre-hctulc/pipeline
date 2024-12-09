@@ -66,13 +66,13 @@ export abstract class PipelineCheckpoint<I, O, C extends object = {}> {
     // --- Api ---
 
     /**
-     * When an error occurs in the pipeline, the error is caught by the nearest `PipelineErrorBoundary` checkpoint. If there is no such checkpoint, the error is thrown as a `PipelineError`.
+     * When an error occurs in the pipeline, the error is caught by the nearest {@link PipelineErrorBoundary} checkpoint. If there is no such checkpoint, the error is thrown as a {@link PipelineError}.
      *
-     * Rollbacks are performed, starting from the error source checkpoint to the start of the execution chain. If rollbacks fail, a `PipelineRollbackError` is thrown.
+     * Rollbacks are performed, starting from the error source checkpoint to the start of the execution chain. If rollbacks fail, a {@link PipelineRollbackError} is thrown.
      *
      * @param input
      * @param disableRollbacks
-     * @returns The output of the last checkpoint in the pipeline or null, if the pipeline has a `PipelineErrorBoundary` prior to the error source checkpoint
+     * @returns The output of the last checkpoint in the pipeline or null, if the pipeline has a {@link PipelineErrorBoundary} prior to the error source checkpoint
      */
     async flush<T extends PipelineCheckpoint<any, any> = PipelineCheckpoint<any, any>>(
         input: I,
@@ -164,7 +164,7 @@ export abstract class PipelineCheckpoint<I, O, C extends object = {}> {
     /**
      * Connects the current checkpoint to the next one
      * @param next The next checkpoint
-     * @returns `next`
+     * @returns The next checkpoint
      */
     weld<T extends PipelineCheckpoint<O, any>>(next: T): T {
         // disconnect old nodes
